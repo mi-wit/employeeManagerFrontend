@@ -11,6 +11,7 @@ import { EmployeeService } from './employee.service';
 export class AppComponent implements OnInit {
   title = 'frontConnection';
 
+  public rand ="https://bootdey.com/img/Content/avatar/avatar2.png";
   public employees: Employee[] = [];
   
   constructor(private employeService: EmployeeService) {}
@@ -23,6 +24,9 @@ export class AppComponent implements OnInit {
     this.employeService.getEmployees().subscribe(
       (response: Employee[]) => {
         this.employees = response;
+        for (let employee of this.employees) {
+          employee['profilePic'] = `https://bootdey.com/img/Content/avatar/avatar${getRandomInt(1, 7)}.png`;
+        }
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
@@ -30,4 +34,11 @@ export class AppComponent implements OnInit {
 
     );
   }
+
+
+}
+function getRandomInt(min: number, max: number) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
 }
