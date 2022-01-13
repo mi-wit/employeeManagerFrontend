@@ -13,6 +13,6 @@ export interface Employee {
     commissionPct: number;
     manager: Employee;
     department: Department;
-    profilePic: string;
+    profilePic: number;
 
 }
